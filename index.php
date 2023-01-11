@@ -18,11 +18,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Accueil - Bernard & cie</title>
-        <link rel="stylesheet" href="publique/css/variables.css">
-        <link rel="stylesheet" href="publique/css/generiques.css">
-        <link rel="stylesheet" href="publique/css/layout.css">
-        <link rel="stylesheet" href="publique/css/modules.css">
-        <link rel="stylesheet" href="publique/css/etats.css">
+        <link rel="stylesheet" href="public/css/variables.css">
+        <link rel="stylesheet" href="public/css/generiques.css">
+        <link rel="stylesheet" href="public/css/layout.css">
+        <link rel="stylesheet" href="public/css/modules.css">
+        <link rel="stylesheet" href="public/css/etats.css">
     </head>
     <body>
         <header>
