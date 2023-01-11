@@ -1,0 +1,284 @@
+/*===============================================
+    Header
+===============================================*/
+
+    header .logo{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+    }
+    header .logo h2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+    }
+    header .btn_print, .btn-retour {
+        border-radius: 15px;
+        padding: 0 10px;
+        background-color: var(--couleur-principal);
+        display: flex;
+        flex-direction: row;
+        width: fit-content;
+    }
+    .btn-retour {
+        margin: 50px auto;
+        position: relative;
+        padding: 20px 15px;
+    }
+    header .btn_print{
+        position: absolute;
+        top: calc(2.2vh + 25px);
+        right: calc(5vw + 25px);
+        justify-content: flex-start;
+    }
+    header .btn_print svg, .btn-retour svg {
+        width: 30px;
+        height: 30px;
+    }
+    header .btn_print h3, .btn-retour h3 {
+        margin: auto 10px;
+    }
+
+
+/*===============================================
+    Main
+===============================================*/
+
+    /* Style erreur */
+        p.erreur {
+            
+            margin: 5px 0 0 calc(10% + 25px);
+            color: var(--couleur-erreur);
+        }
+        .boites input.erreur:invalid  {
+            border: 1px solid var(--couleur-erreur);
+            background-color: var(--couleur-fond-erreur);
+            outline: none;
+        }
+
+    /* Boites */
+        .boites {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .boite_gauche, .boite_droite {
+            width: 50vw;
+            margin-left: 1.25vw;
+            margin-right: 1.25vw;
+        }
+        .boite_droite .produits, .boite_droite .titre-devis {
+            border-radius: 50px;
+            border: 1px solid var(--couleur-positive);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .boite_gauche label, .boite_droite .produits label {
+            margin-left: calc(10% + 25px);
+            font-size: 20px;
+        }
+        .boite_gauche input:not([type=radio]), .boite_droite .produits input {
+            height: 50px;
+            padding: 5px 20px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            border: var(--couleur-principal);
+            background-color: var(--couleur-secondaire);
+        }
+        .boite_gauche input:not([type=radio],[type=tel]), .boite_droite .produits input {
+            width: 80%;
+        }
+        .boite_gauche input:last-child:not([type=tel]), .boite_droite .produits input:last-child {
+            margin-bottom: 50px;
+        }
+        
+        /* Boite gauche */
+            .boite_gauche {
+                background-color: var(--couleur-fond-erreur);
+                border-radius: 50px;
+                border: 1px solid var(--couleur-positive);
+                padding: 20px;
+                box-sizing: border-box;
+                margin-bottom: 250px;
+            }
+            .boite_gauche label:not([for=femme], [for=homme]) {
+                display: block;
+                margin: 30px auto 5px calc(10% + 25px);
+                padding: 5px 20px;
+                box-sizing: border-box;
+            }
+            .boite_gauche input:not([type=radio]) {
+                margin: auto;
+                display: block;
+            }
+            .boite_gauche .civilite {
+                display: block;
+            }
+            .boite_gauche .radios {
+                margin: 0 auto 20px auto;
+                width: fit-content;
+            }
+            .boite_gauche .radio_femme label, .boite_gauche .radio_homme label {
+                margin-left: 10px;
+            }
+            .boite_gauche .radio_femme input, .boite_gauche .radio_homme input {
+                height: 25px;
+                width: 25px;
+            }
+            .boite_gauche input[type=tel]:nth-child(1) {
+                width: 35%;
+                margin-right: 5%;
+            }
+            .boite_gauche input[type=tel]:nth-child(2) {
+                width: 35%;
+                margin-left: 5%;
+            }
+            .boite_gauche .numeros_telephone {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+
+        /* Boite droite */
+            .boite_droite .titre-devis {
+                margin-bottom: 50px;
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+            }
+            .boite_droite .titre-devis label {
+                text-align: center;
+                margin: 50px 0 30px 0;
+                display: block;
+            }
+            .boite_droite .titre-devis input {
+                display: block;
+                margin: 10px auto;
+                width: 200px;
+                height: 50px;
+                border-radius: 15px;
+                border: 1px solid var(--couleur-positive);
+            }
+            .boite_droite .produits input {
+                display: block;
+                margin: 30px auto 5px auto;
+                box-sizing: border-box;
+            }
+            .boite_droite .produits label span {
+                font-size: 18px;
+            }
+    
+    /* Bouton envoyer */
+        .btn-resultat-devis {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .btn-resultat-devis input, .btn-resultat-devis div.absolu-devant {
+            width: 216px;
+            height: 70px;
+            margin: 0 auto 250px 0;
+            position: absolute;
+            left: calc(50vw - 108px);
+            border-radius: 15px;
+        }
+        .btn-resultat-devis input {
+            order: 20;
+            background-color: transparent;
+            border: transparent;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+            border: 1px solid var(--couleur-negative);
+        }
+        .btn-resultat-devis div.absolu-devant {
+            order: 10;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            background-color: var(--couleur-negative);
+        }
+        .btn-resultat-devis h4 {
+            margin: auto auto auto 5px;
+        }
+        .btn-resultat-devis div.absolu-devant svg {
+            margin: auto 5px auto auto;
+        }
+
+    /* Devis */
+        .infos-vendeur p, .infos-client p, .infos-devis p {
+            margin: 2px 0;
+        }
+        .infos-client {
+            margin: 50px 0 0 0;
+            text-align: end;
+        }
+        .infos-devis .titre-devis {
+            font-size: 35px;
+        }
+
+        /* Tableau Principal */
+            .tableau_principal {
+                margin: 100px 0;
+            }
+            .tableau_principal .thead {
+                background-color: var(--couleur-principal);
+                border-radius: 15px;
+                border: 2px solid var(--couleur-positive);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 50px;
+                margin-top: 50px;
+            }
+            .tableau_principal .contenu {
+                border: 2px solid var(--couleur-principal);
+                border-radius: 15px;
+                margin-top: 15px;
+                height: 150px;
+            }
+
+        /* Tableau Prix */
+            .flex {
+                display: flex;
+                flex-direction: row;
+                justify-content: right;
+                height: 250px;
+                margin-top: 100px;
+            }
+            .total-ht, .tva, .total-ttc {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                height: 60px;
+                box-sizing: border-box;
+            }
+            .total-ht div, .tva div, .total-ttc div {
+                align-self: center;
+                padding: 15px 5vw;
+                border-radius: 10px;
+                border: 2px solid var(--couleur-principal);
+                border-left: 4px solid var(--couleur-principal);
+                height: 25px;
+            }
+            .total-ttc div {
+                border: 2px solid var(--couleur-positive);
+                background-color: var(--couleur-secondaire);
+            }
+            .btn-retour {
+                display: none;
+            }
+
+@media print {
+    .btn-resultat-devis, .btn-retour, .btn_print, .btn_print h2, .btn_print h3 {
+        display: none;
+    }
+    .flex .tableau-totaux {
+        display: block;
+        width: 35vw;
+    }
+    .total-ht, .tva, .total-ttc {
+        margin-top: 15px;
+    }
+}
