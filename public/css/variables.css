@@ -1,0 +1,14 @@
+:root {
+    --couleur-principal: #C4C4C4;
+    --couleur-secondaire: #E5E5E5;
+    --couleur-positive: #6E6E6E;
+    --couleur-negative: #d3d3d3;
+
+    --couleur-erreur: #ff0000;
+    --couleur-fond-erreur: #fdf3f3;
+
+    --police-text: 18px;
+    --police-h4: 1.11rem;
+    --police-h3: 1.22rem;
+    --police-h2: 2rem;
+}
