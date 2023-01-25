@@ -1,0 +1,109 @@
+.display-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-colonne {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+main {
+  width: clamp(320px, 100% - 42px, 920px);
+  margin: 32px auto;
+}
+main h1 {
+  margin-bottom: 6px;
+}
+main p {
+  margin: 6px 0 32px 0;
+}
+main form {
+  margin: 64px 0 64px 0;
+}
+main form .champ {
+  margin: 24px 0;
+}
+main form .champ label, main form .champ h3 {
+  display: inline-block;
+  width: 256px;
+  line-height: 42px;
+  height: 100%;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+main form .champ input[type=text], main form .champ input[type=number], main form .champ input[type=email], main form .champ input[type=tel] {
+  height: 42px;
+  line-height: 42px;
+  width: calc(100% - 256px);
+  box-sizing: border-box;
+  padding-left: 12px;
+  border: 1px solid #646464;
+  border-radius: 6px;
+}
+main form .champ input:focus {
+  border: 1px solid transparent;
+  outline: 3px solid skyblue;
+}
+main form .champ div.display-flex {
+  width: calc(100% - 256px);
+  gap: 24px;
+}
+main form .champ div.display-flex input {
+  width: calc(50% - 12px);
+  padding-left: 12px;
+}
+main form .champ div.display-flex.flex-colonne input {
+  width: 100%;
+}
+main form .champ div.display-flex.flex-colonne div.display-flex {
+  width: 100%;
+}
+main form .champ div.display-flex.flex-colonne div.display-flex input {
+  width: calc(50% - 12px);
+  padding-left: 12px;
+}
+main form .champ .formules, main form .champ .options {
+  gap: 42px;
+  -moz-user-select: none;
+}
+main form .champ .formules .option, main form .champ .options .option {
+  width: 122px;
+  height: 92px;
+  border-radius: 12px;
+  color: #646464;
+  background-color: white;
+  border: 1px solid #646464;
+}
+main form .champ .formules .option label, main form .champ .options .option label {
+  width: 100%;
+  text-align: center;
+  line-height: 92px;
+  font-size: 16px;
+}
+main form .champ .formules .option input[type=radio], main form .champ .formules .option input[type=checkbox], main form .champ .options .option input[type=radio], main form .champ .options .option input[type=checkbox] {
+  display: none;
+}
+main form .champ .formules .option input[type=radio]:checked ~ label, main form .champ .formules .option input[type=checkbox]:checked ~ label, main form .champ .options .option input[type=radio]:checked ~ label, main form .champ .options .option input[type=checkbox]:checked ~ label {
+  font-weight: 600;
+  border-radius: 12px;
+  color: #1b1b1b;
+  background-color: #dddddd;
+}
+main form .champ .formules .option input[type=radio]:hover ~ label, main form .champ .formules .option input[type=checkbox]:hover ~ label, main form .champ .options .option input[type=radio]:hover ~ label, main form .champ .options .option input[type=checkbox]:hover ~ label {
+  border-radius: 12px;
+  color: #1b1b1b;
+  background-color: #ebebeb;
+  transition: all 0.3s ease;
+}
+main form input[type=submit] {
+  margin: 64px auto;
+  display: block;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 24px;
+}
