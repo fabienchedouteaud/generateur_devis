@@ -1,0 +1,232 @@
+* {
+    print-color-adjust: exact;
+}
+:root {
+    --couleur-principale: rgb(51, 51, 255);
+    --couleur-fond-bleu: rgb(218, 218, 255);
+    --couleur-gris: rgb(128, 128, 128);
+    --couleur-fond-gris: rgb(242, 242, 242);
+
+    --police-trèspetit: 12px;
+    --police-petit: 15px;
+    --police-moyenne: 18px;
+    --police-grand: 24px;
+}
+
+.display-flex {
+    display: flex;
+    flex-direction: row;
+}
+.flex-colonne {
+    flex-direction: column;
+}
+.espace-max {
+    justify-content: space-between;
+}
+
+html {
+    background-color: darkgray;
+}
+body {
+    background-color: white;
+    border: 1px solid black;
+    width: 21cm;
+    height: 29.7cm;
+    margin: 50px auto;
+    /* change the margins as you want them to be. */
+}
+
+@media print{
+    body {
+        margin: 0;
+    }
+}
+
+header {
+    align-items: center;
+    margin: 36px;
+}
+header h1 {
+    margin: 0;
+}
+header .numero_devis span {
+    text-align: end;
+    font-size: var(--police-moyenne);
+}
+header .numero_devis h2 {
+    margin: 0;
+    color: var(--couleur-principale);
+    font-size: var(--police-grand);
+}
+
+.informations {
+    margin-bottom: 36px;
+}
+.informations div.infos_entreprise,
+.informations div.infos_client {
+    width: 100%;
+    margin: 0 56px;
+}
+.informations div.infos_entreprise h3,
+.informations div.infos_client h3 {
+    color: var(--couleur-principale);
+    margin-bottom: 0;
+    font-size: var(--police-moyenne);
+}
+.informations div.infos_entreprise div.separateur,
+.informations div.infos_client div.separateur {
+    background-color: var(--couleur-fond-bleu);
+    height: 2px;
+    width: 100%;
+    margin-top: 6px;
+}
+.informations div.infos_entreprise p,
+.informations div.infos_client p {
+    margin: 6px 0 0 0;
+    font-size: var(--police-trèspetit);
+}
+.informations div.infos_entreprise p.nom_entreprise,
+.informations div.infos_client p.nom_entreprise {
+    margin-top: 16px;
+}
+.informations div.infos_entreprise div.infos_sup span,
+.informations div.infos_client div.infos_sup span {
+    color: var(--couleur-gris);
+}
+
+.chiffres_clefs {
+    margin: 0 56px 36px 56px;
+    padding: 12px 18px;
+    background-color: var(--couleur-fond-bleu);
+    border-radius: 6px;
+}
+.chiffres_clefs .donnee {
+    width: fit-content;
+}
+.chiffres_clefs .donnee h3 {
+    margin-top: 12px;
+    font-size: var(--police-petit);
+}
+.chiffres_clefs .donnee div.display-flex {
+    align-items: center;
+}
+.chiffres_clefs .donnee div.display-flex svg {
+    height: 24px;
+    width: 24px;
+    margin-right: 12px;
+    fill: var(--couleur-principale);
+}
+.chiffres_clefs .donnee div.display-flex p {
+    margin: 0;
+}
+
+div.articles table {
+    margin: 0 56px;
+    width: calc(100% - 112px);
+    border-collapse: collapse;
+}
+div.articles table tr {
+    width: 100%;
+}
+div.articles table thead {
+    position: relative;
+    line-height: 56px;
+    height: 56px;
+    font-size: var(--police-petit);
+    color: var(--couleur-gris);
+}
+div.articles table thead:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    content: '';
+    background-color: var(--couleur-fond-bleu);
+}
+div.articles table thead tr {
+    text-align: left;
+}
+div.articles table tbody tr {
+    height: 64px;
+    max-height: max-content;
+}
+div.articles table thead tr th:nth-child(1),
+div.articles table tbody tr td:nth-child(1) {
+    width: 50px;
+    text-align: center;
+}
+div.articles table thead tr th:nth-child(2),
+div.articles table tbody tr td:nth-child(2) {
+    width: 200px;
+}
+div.articles table thead tr th:nth-child(3),
+div.articles table tbody tr td:nth-child(3) {
+    width: 100px;
+    text-align: start;
+}
+
+div.articles table thead tr th:nth-child(4),
+div.articles table tbody tr td:nth-child(4),
+div.articles table thead tr th:nth-child(5),
+div.articles table tbody tr td:nth-child(5),
+div.articles table thead tr th:nth-child(6),
+div.articles table tbody tr td:nth-child(6) {
+    width: 100px;
+    text-align: center;
+}
+
+div.articles table tbody tr td {
+    font-size: var(--police-petit);
+        padding: 16px 0;
+}
+div.articles table tbody tr td span {
+    display: block;
+    font-size: var(--police-trèspetit);
+    color: var(--couleur-gris);
+}
+
+div.articles table tbody tr:nth-child(2n) {
+    background-color: var(--couleur-fond-gris);
+}
+
+div.totaux {
+    width: 350px;
+    margin: 36px 0 0 calc(100% - 406px);
+    text-align: end;
+}
+div.totaux table tr {
+    height: 24px;
+    position: relative;
+}
+div.totaux table tr:not(:last-child) th {
+    color: var(--couleur-gris);
+}
+div.totaux table tr th,
+div.totaux table tr td {
+    line-height: 24px;
+    height: 24px;
+    font-size: var(--police-petit);
+}
+div.totaux table tr th {
+    width: 150px;
+}
+div.totaux table tr td {
+    width: 100px;
+}
+div.totaux table tr:last-child:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    content: '';
+    background-color: var(--couleur-fond-bleu);
+}
+div.totaux table tr:last-child {
+    height: 48px;
+    line-height: 48px;
+}
+div.totaux table tr:last-child td:last-child {
+    font-weight: 600;
+}
