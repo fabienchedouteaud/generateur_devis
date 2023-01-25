@@ -8,6 +8,7 @@
      <meta name="author" content="Fabien Chedouteaud">
     <meta name="description" content="Exemple de générateur de devis">
     <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/normalize.min.css">
 </head>
 <body>
     <main>
