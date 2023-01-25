@@ -1,78 +1,10 @@
 <?php
 
-    //Données déjà sauvegardées dans la BDD
-    $nom_vendeur = "Bernard";
-    $email_vendeur = "bernard.lermite@gmail.com";
-    $adresse_vendeur = "4 route des moules, île d'Oléron 40125";
-
-    //Récupération des données du formulaire
-    $tableau = $_POST;
-
-    //transformer une partie du tableau pour  créer un tableau de deuxième étage pour 
-    //les produits à commander et leurs prix
-    $produits = [
-        'produit1' => $tableau['element1'],
-        'produit2' => $tableau['element2'],
-        'produit3' => $tableau['element3'],
-        'produit4' => $tableau['element4'],
-    ];
-    //suppression des éléments transférés
-    unset($tableau['element1']);
-    unset($tableau['element2']);
-    unset($tableau['element3']);
-    unset($tableau['element4']);
-    //Intégrer le nouveau tableau au tableau existant
-    $tableau["produits"] = $produits;
-    
-    
-    // Donne le numéro du client pour le retrouver dans la BDD
-    $numero_client = random_int(1, 500);
-
-    // Donne la date de création du devis
-    $date = date('d/m/Y \à H\hi');
-    
-    
-    /*===================================================
-    Calcule des prix HT, TTC et TVA des produits 
-    ===================================================*/
-    
-    //Calcule des prix HT et du prix total HT:
-    
-    //Tableau des prix des produits récupéré dans la BDD
-    $prix = [
-        '1' => 2.95,
-        '2' => 0.90,
-        '3' => 0.50,
-        '4' => 0.35
-    ];
-
-    //Création du tableau prix pour la collecte des données
-    $tableau_prix = [];
-
-    // Calcule du prix HT de chaque produit
-    $i = 1;
-    $prix_total_ht = 0;
-
-    foreach ($prix as $produits) {
-
-        $tableau_prix["produit" . $i]["prix_ht"] = $tableau["produits"]['produit' . $i] * $produits;
-                
-        //Calcule du prix total HT:
-        $prix_total_ht += $tableau_prix["produit" . $i]["prix_ht"];
-
-        $i++;
-    }
-
-    //ajout de la variable prix total HT au tableau
-    $tableau_prix["prix_total_ht"] = $prix_total_ht;
+/**
+ * Utiliser du Hérédoc comme quand on crée un template (header, main, footer)
+ */
 
 
-
-    //Calcule du prix TTC:
-    $tableau_prix["prix_ttc"] = round($tableau_prix["prix_total_ht"] * 1.1, 3);
-
-    //Calcule du prix TTC:
-    $tableau_prix["prix_tva"] = round($tableau_prix["prix_ttc"] - $tableau_prix["prix_total_ht"], 3);
 
 ?>
 
@@ -82,113 +14,132 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bernard & cie</title>
-        <link rel="stylesheet" href="../publique/css/variables.css">
-        <link rel="stylesheet" href="../publique/css/generiques.css">
-        <link rel="stylesheet" href="../publique/css/layout.css">
-        <link rel="stylesheet" href="../publique/css/modules.css">
-        <link rel="stylesheet" href="../publique/css/etats.css">
+        <title>Devis de Portail auto-entreprise</title>
     </head>
+    <style>*{print-color-adjust:exact}:root{--couleur-principale:rgb(51, 51, 255);--couleur-fond-bleu:rgb(218, 218, 255);--couleur-gris:rgb(128, 128, 128);--couleur-fond-gris:rgb(242, 242, 242);--police-trèspetit:12px;--police-petit:15px;--police-moyenne:18px;--police-grand:24px}.display-flex{display:flex;flex-direction:row}.flex-colonne{flex-direction:column}.espace-max{justify-content:space-between}html{background-color:#a9a9a9}body{background-color:#fff;border:1px solid #000;width:21cm;height:29.6cm;margin:50px auto}@media print{body{margin:0}}header{align-items:center;margin:36px}header h1{margin:0}header .numero_devis span{text-align:end;font-size:var(--police-moyenne)}header .numero_devis h2{margin:0;color:var(--couleur-principale);font-size:var(--police-grand)}.informations{margin-bottom:36px}.informations div.infos_client,.informations div.infos_entreprise{width:100%;margin:0 56px}.informations div.infos_client h3,.informations div.infos_entreprise h3{color:var(--couleur-principale);margin-bottom:0;font-size:var(--police-moyenne)}.informations div.infos_client div.separateur,.informations div.infos_entreprise div.separateur{background-color:var(--couleur-fond-bleu);height:2px;width:100%;margin-top:6px}.informations div.infos_client p,.informations div.infos_entreprise p{margin:6px 0 0 0;font-size:var(--police-trèspetit)}.informations div.infos_client p.nom_entreprise,.informations div.infos_entreprise p.nom_entreprise{margin-top:16px}.informations div.infos_client div.infos_sup span,.informations div.infos_entreprise div.infos_sup span{color:var(--couleur-gris)}.chiffres_clefs{margin:0 56px 36px 56px;padding:12px 18px;background-color:var(--couleur-fond-bleu);border-radius:6px}.chiffres_clefs .donnee{width:fit-content}.chiffres_clefs .donnee h3{margin-top:12px;font-size:var(--police-petit)}.chiffres_clefs .donnee div.display-flex{align-items:center}.chiffres_clefs .donnee div.display-flex svg{height:24px;width:24px;margin-right:12px;fill:var(--couleur-principale)}.chiffres_clefs .donnee div.display-flex p{margin:0}div.articles table{margin:0 56px;width:calc(100% - 112px);border-collapse:collapse}div.articles table tr{width:100%}div.articles table thead{position:relative;line-height:56px;height:56px;font-size:var(--police-petit);color:var(--couleur-gris)}div.articles table thead:before{position:absolute;bottom:0;left:0;height:2px;width:100%;content:'';background-color:var(--couleur-fond-bleu)}div.articles table thead tr{text-align:left}div.articles table tbody tr{height:64px;max-height:max-content}div.articles table tbody tr td:nth-child(1),div.articles table thead tr th:nth-child(1){width:50px;text-align:center}div.articles table tbody tr td:nth-child(2),div.articles table thead tr th:nth-child(2){width:200px}div.articles table tbody tr td:nth-child(3),div.articles table thead tr th:nth-child(3){width:100px;text-align:start}div.articles table tbody tr td:nth-child(4),div.articles table tbody tr td:nth-child(5),div.articles table tbody tr td:nth-child(6),div.articles table thead tr th:nth-child(4),div.articles table thead tr th:nth-child(5),div.articles table thead tr th:nth-child(6){width:100px;text-align:center}div.articles table tbody tr td{font-size:var(--police-petit);padding:16px 0}div.articles table tbody tr td span{display:block;font-size:var(--police-trèspetit);color:var(--couleur-gris)}div.articles table tbody tr:nth-child(2n){background-color:var(--couleur-fond-gris)}div.totaux{width:350px;margin:36px 0 0 calc(100% - 406px);text-align:end}div.totaux table tr{height:24px;position:relative}div.totaux table tr:not(:last-child) th{color:var(--couleur-gris)}div.totaux table tr td,div.totaux table tr th{line-height:24px;height:24px;font-size:var(--police-petit)}div.totaux table tr th{width:150px}div.totaux table tr td{width:100px}div.totaux table tr:last-child:after{position:absolute;top:0;left:0;height:2px;width:100%;content:'';background-color:var(--couleur-fond-bleu)}div.totaux table tr:last-child{height:48px;line-height:48px}div.totaux table tr:last-child td:last-child{font-weight:600}</style>
     <body>
-        <header>
-            <div class="logo">
-                <h1>
-                    <svg width="50" height="50" viewBox="0 0 75 75" fill="none">
-                        <path d="M65.625 15.625C62.1562 14.5313 58.3438 14.0625 54.6875 14.0625C48.5938 14.0625 42.0312 15.3125 37.5 18.75C32.9688 15.3125 26.4062 14.0625 20.3125 14.0625C14.2188 14.0625 7.65625 15.3125 3.125 18.75V64.5312C3.125 65.3125 3.90625 66.0938 4.6875 66.0938C5 66.0938 5.15625 65.9375 5.46875 65.9375C9.6875 63.9062 15.7812 62.5 20.3125 62.5C26.4062 62.5 32.9688 63.75 37.5 67.1875C41.7188 64.5312 49.375 62.5 54.6875 62.5C59.8438 62.5 65.1562 63.4375 69.5312 65.7812C69.8438 65.9375 70 65.9375 70.3125 65.9375C71.0938 65.9375 71.875 65.1562 71.875 64.375V18.75C70 17.3438 67.9688 16.4062 65.625 15.625Z" fill="#6E6E6E"/>
-                        <path d="M9.375 57.8125V21.875C12.8125 20.7813 16.5625 20.3125 20.3125 20.3125C24.5 20.3125 30.0938 21.5937 34.375 23.4062V59.3438C30.0938 57.5312 24.5 56.25 20.3125 56.25C16.5625 56.25 12.8125 56.7188 9.375 57.8125ZM65.625 57.8125C62.1875 56.7188 58.4375 56.25 54.6875 56.25C50.5 56.25 44.9062 57.5312 40.625 59.3438V23.4062C44.9062 21.5625 50.5 20.3125 54.6875 20.3125C58.4375 20.3125 62.1875 20.7813 65.625 21.875V57.8125Z" fill="#939393"/>
-                        <path d="M54.6875 32.8125C57.4375 32.8125 60.0938 33.0938 62.5 33.625V28.875C60.0312 28.4062 57.375 28.125 54.6875 28.125C50.6875 28.125 47 28.625 43.75 29.5938V34.5C46.8438 33.4063 50.5625 32.8125 54.6875 32.8125ZM54.6875 41.125C57.4375 41.125 60.0938 41.4063 62.5 41.9375V37.1875C60.0312 36.7187 57.375 36.4375 54.6875 36.4375C50.6875 36.4375 47 36.9375 43.75 37.9063V42.8125C46.8438 41.75 50.5625 41.125 54.6875 41.125ZM54.6875 49.4688C57.4375 49.4688 60.0938 49.75 62.5 50.2813V45.5312C60.0312 45.0625 57.375 44.7813 54.6875 44.7813C50.6875 44.7813 47 45.2813 43.75 46.25V51.1563C46.8438 50.0625 50.5625 49.4688 54.6875 49.4688Z" fill="#C4C4C4"/>
-                    </svg>
-                </h1>
-                <h2>Bernard & cie</h2>
-            </div>
-            <div class="btn_print" onclick="window.print()">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path d="M448 192V77.25c0-8.49-3.37-16.62-9.37-22.63L393.37 9.37c-6-6-14.14-9.37-22.63-9.37H96C78.33 0 64 14.33 64 32v160c-35.35 0-64 28.65-64 64v112c0 8.84 7.16 16 16 16h48v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h48c8.84 0 16-7.16 16-16V256c0-35.35-28.65-64-64-64zm-64 256H128v-96h256v96zm0-224H128V64h192v48c0 8.84 7.16 16 16 16h48v96zm48 72c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/>
-                    </svg>
-                </h2>
-                <h3>Imprimer le devis</h3>
+        <header class="display-flex espace-max">
+            <h1 class="logo">LOGO</h1>
+            <div class="numero_devis display-flex flex-colonne">
+                <span>devis n°</span>
+                <?= '<!--Premier devis de '.$mois[date('n')].' '.date('Y').' -->'; ?> 
+                <h2 title="Premier devis de <?= $mois[date('n')].' '.date('Y') ?>"><?=date('Y-m')?>-001</h2>
             </div>
         </header>
-
         <main>
-            <div class="infos-vendeur">
-                <p><?= $nom_vendeur ?></p>
-                <p><?= $email_vendeur ?></p>
-                <p><?= $adresse_vendeur ?></p>
-            </div>
-            <div class="infos-client">
-                <p><?= $tableau['nom'] . ' ' . $tableau['prenom'] ?></p>
-                <p><?= $tableau['email'] ?></p>
-                <p><?= $tableau['adresse'] ?></p>
-            </div>
-            <div class="infos-devis">
-                <p class="titre-devis"><?= $tableau['titre_devis'] ?></p>
-                <p>Date: <?= $date ?></p>
-                <p>N° client: <?= $numero_client ?></p>
-            </div>
-
-            <div class="tableau_principal">
-                <div class="thead description">Description</div>
-                <div class="thead quantite">Quantité</div>
-                <div class="thead prix-unitaire-ht">Prix unitaire HT</div>
-                <div class="thead total-ht-produit">Total HT</div>
-                <div class="thead pourcentage-tva">TVA</div>
-
-                <div class="contenu contenu_description">
-                    <p>Stylos à plumes</p>
-                    <p>Stylos à billes</p>
-                    <p>Crayons à papier</p>
-                    <p>Gommes</p>
-                </div>
-                <div class="contenu contenu_quantite">
-                    <p><?= $tableau["produits"]['produit1'] ?></p>
-                    <p><?= $tableau["produits"]['produit2'] ?></p>
-                    <p><?= $tableau["produits"]['produit3'] ?></p>
-                    <p><?= $tableau["produits"]['produit4'] ?></p>
-                </div>
-                <div class="contenu contenu_prix-unitaire-ht">
-                    <p><?= sprintf('%.2f', $prix[1]); ?> &euro;</p>
-                    <p><?= sprintf('%.2f', $prix[2]); ?> &euro;</p>
-                    <p><?= sprintf('%.2f', $prix[3]); ?> &euro;</p>
-                    <p><?= sprintf('%.2f', $prix[4]); ?> &euro;</p>
-                </div>
-                <div class="contenu contenu_total-ht">
-                    <p><?= sprintf('%.2f', $tableau_prix["produit1"]["prix_ht"]); ?> &euro;</p>
-                    <p><?= sprintf('%.2f', $tableau_prix["produit2"]["prix_ht"]); ?> &euro;</p>
-                    <p><?= sprintf('%.2f', $tableau_prix["produit3"]["prix_ht"]); ?> &euro;</p>
-                    <p><?= sprintf('%.2f', $tableau_prix["produit4"]["prix_ht"]); ?> &euro;</p>
-                </div>
-                <div class="contenu contenu_tva">
-                    <p>10 &#37;</p>
-                    <p>10 &#37;</p>
-                    <p>10 &#37;</p>
-                    <p>10 &#37;</p>
-                </div>
-            </div>
-
-            <div class="flex">
-                <div class="tableau-totaux">
-                    <div class="total-ht">
-                        <h3>Total HT</h3>
-                        <div class="prix"><?= $tableau_prix["prix_total_ht"]; ?> &euro;</div>
+            <div class="informations display-flex espace-max">
+                <div class="infos_entreprise">
+                    <h3>Devis proposé par</h3>
+                    <div class="separateur"></div>
+                    <p class="nom_entreprise">Mon Portail Entrepreneur EI</p>
+                    <p class="adresse">22 Rue du Général, 75002 Paris</p>
+                    <p class="numero_telephone">0123456789</p>
+                    <p class="email">monportailentrepeneur7@orange.fr</p>
+                    <div class="infos_sup">
+                        <p class="siret"><span>SIRET:</span> 222 222 222</p>
+                        <p class="rm"><span>ENREGISTR&Eacute; AU RM DE:</span> Limoges</p>
                     </div>
-                    <div class="tva">
-                        <h3>TVA 10 &#37;</h3>
-                        <div class="prix"><?= $tableau_prix["prix_tva"]; ?> &euro;</div>
-                    </div>
-                    <div class="total-ttc">
-                        <h3>Total TTC</h3>
-                        <div class="prix"><?= $tableau_prix["prix_ttc"]; ?> &euro;</div>
+                </div>
+                <div class="infos_client">
+                    <h3>Devis proposé à</h3>
+                    <div class="separateur"></div>
+                    <p class="nom_entreprise">Entreprise <?php print_r($_POST['nom_entreprise_client']); ?></p>
+                    <p class="alattention">à l'attention de M. <?php print_r($_POST['prenom_client'] . ' ' . $_POST['nom_client']); ?></p>
+                    <p class="adresse"><?php if(!isset($_POST['complement_adresse'])) print_r($_POST['complement_adresse'] . '. ');print_r($_POST['adresse'] . ', ' . $_POST['code_postal'] . ' ' . $_POST['ville']); ?></p>
+                    <p class="numero_telephone"><?php print_r($_POST['telephone']); ?></p>
+                    <p class="email"><?php print_r($_POST['email']) ?></p>
+                    <div class="infos_sup">
+                        <p class="siret"><span>SIRET:</span> 222 222 222</p>
+                        <p class="tva"><span>TVA:</span> FR85 978 978</p>
                     </div>
                 </div>
             </div>
-
-            <div class="btn-retour">
-                <svg viewBox="0 0 448 512">
-                    <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/>
-                </svg>
-                <h3>Retour à l'accueil</h3>
+            <div class="chiffres_clefs display-flex espace-max">
+                <div class="donnee">
+                    <h3>Création du devis</h3>
+                    <div class="display-flex">
+                        <svg viewBox="0 0 24 24"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg>
+                        <p><?= date('d/m/Y') ?></p>
+                    </div>
+                </div>
+                <div class="donnee">
+                    <h3>Conditions de règlement</h3>
+                    <div class="display-flex">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path></svg>
+                        <p>30 jours</p>
+                    </div>
+                </div>
+                <div class="donnee">
+                    <h3>Durée de production</h3>
+                    <div class="display-flex">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"></path></svg>
+                        <p>4 jours</p>
+                    </div>
+                </div>
+                <div class="donnee">
+                    <h3>Validité de l'offre</h3>
+                    <div class="display-flex">
+                        <svg viewBox="0 0 24 24"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg>
+                        <p><?= date('d/m/Y',strtotime('+30 day')) ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="articles">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>ARTICLE</th>
+                            <th>QUANTIT&Eacute;</th>
+                            <th>PRIX UNIT&Eacute;</th>
+                            <th>REMISE</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            $i=1;
+                            foreach ($articles as $article) {
+                                $unite = ($article['reduction'] == "&nbsp;") ? "" : " %";
+                                echo <<<EOF
+                                    <tr>
+                                        <td>{$i}</td>
+                                        <td>{$article['nom']}</td>
+                                        <td>{$article['quantite']}</td>
+                                        <td>{$article['tarif']} &euro;</td>
+                                        <td>{$article['reduction']} {$unite}</td>
+                                        <td>{$article['total']} &euro;</td>
+                                    </tr>
+                                EOF;
+                                $i++;
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="totaux">
+                <table>
+                    <tr>
+                        <th>SOUS-TOTAL</th>
+                        <td></td>
+                        <td><?= $totaux['sous_total']; ?> &euro;</td>
+                    </tr>
+                    <tr>
+                        <th>TOTAL REMISE</th>
+                        <td></td>
+                        <td><?= (!is_int($totaux['total_remise'])) ? '- ' . $totaux['total_remise'] : $totaux['total_remise']; ?> &euro;</td>
+                    </tr>
+                    <tr>
+                        <th>TVA</th>
+                        <td><?= $totaux['tva_taux']; ?> %</td>
+                        <td>+ <?= $totaux['tva_total']; ?> &euro;</td>
+                    </tr>
+                    <tr>
+                        <th>MONTANT TOTAL</th>
+                        <td></td>
+                        <td><?= $totaux['montant_total']; ?> &euro;</td>
+                    </tr>
+                </table>
             </div>
         </main>
     </body>
